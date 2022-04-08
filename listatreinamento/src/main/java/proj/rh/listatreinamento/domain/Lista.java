@@ -1,11 +1,18 @@
 package proj.rh.listatreinamento.domain;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Lista {
+@Table(name="listatreinamento")
+public class Lista  implements Serializable  {
 
     @Id
     @GeneratedValue
@@ -42,6 +49,11 @@ public void setNome(String nome) {
     this.nome = nome;
 }
 
+@OneToMany(mappedBy="listatreinamento",  fetch = FetchType.LAZY)
+
+private Set<Pessoa> pessoas;
+
 }
+
 
 
